@@ -665,7 +665,7 @@
         '<div class="dr-switcher dr-month-switcher">' +
         '<i class="dr-left"></i>' +
         '<span></span>' +
-        '<i class="dr-right"></i>' +grun
+        '<i class="dr-right"></i>' +
         '</div>' +
         '<div class="dr-switcher dr-year-switcher">' +
         '<i class="dr-left"></i>' +
