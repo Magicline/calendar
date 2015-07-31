@@ -220,7 +220,7 @@
       }
 
       if (first_day.isBefore(self.earliest_date))
-        // first_day = moment(self.earliest_date);
+      // first_day = moment(self.earliest_date);
         return $(this).remove()
 
       $('.dr-item-aside', this).html(first_day.format('ll') +' – '+ last_day.format('ll'));
@@ -445,8 +445,8 @@
 
         if (other) {
           $('.dr-date', self.element)
-            .not(self.selected)
-            .html(other.format('MMMM D, YYYY'));
+              .not(self.selected)
+              .html(other.format('MMMM D, YYYY'));
         }
 
         $(self.selected).html(string);
@@ -462,8 +462,8 @@
     });
 
     $('.dr-calendar', this.element)
-      .css('width', cal_width)
-      .slideDown(200);
+        .css('width', cal_width)
+        .slideDown(200);
     $('.dr-input', this.element).addClass('active');
     $(selected).addClass('active').focus();
 
@@ -614,76 +614,34 @@
   Calendar.prototype.calendarHTML = function(type) {
     if (type == "double")
       return this.element.append('<div class="dr-input">' +
-        '<div class="dr-dates">' +
+          '<div class="dr-dates">' +
           '<div class="dr-date dr-date-start" contenteditable>'+ moment(this.start_date).format('MMMM D, YYYY') +'</div>' +
           '<span class="dr-dates-dash">–</span>' +
           '<div class="dr-date dr-date-end" contenteditable>'+ moment(this.end_date).format('MMMM D, YYYY') +'</div>' +
-        '</div>' +
-
-        '<div class="dr-presets">' +
-          '<span class="dr-preset-bar"></span>' +
-          '<span class="dr-preset-bar"></span>' +
-          '<span class="dr-preset-bar"></span>' +
-        '</div>' +
-      '</div>' +
-
-      '<div class="dr-selections">' +
-        '<div class="dr-calendar" style="display: none;">' +
-          '<div class="dr-range-switcher">' +
-            '<div class="dr-switcher dr-month-switcher">' +
-              '<i class="dr-left"></i>' +
-              '<span>April</span>' +
-              '<i class="dr-right"></i>' +
-            '</div>' +
-            '<div class="dr-switcher dr-year-switcher">' +
-              '<i class="dr-left"></i>' +
-              '<span>2015</span>' +
-              '<i class="dr-right"></i>' +
-            '</div>' +
           '</div>' +
-          '<ul class="dr-days-of-week-list">' +
-            '<li class="dr-day-of-week">S</li>' +
-            '<li class="dr-day-of-week">M</li>' +
-            '<li class="dr-day-of-week">T</li>' +
-            '<li class="dr-day-of-week">W</li>' +
-            '<li class="dr-day-of-week">T</li>' +
-            '<li class="dr-day-of-week">F</li>' +
-            '<li class="dr-day-of-week">S</li>' +
-          '</ul>' +
-          '<ul class="dr-day-list"></ul>' +
-        '</div>' +
 
-        '<ul class="dr-preset-list" style="display: none;">' +
-          '<li class="dr-list-item" data-months="days">Last 30 days <span class="dr-item-aside"></span></li>' +
-          '<li class="dr-list-item" data-months="1">Last month <span class="dr-item-aside"></span></li>' +
-          '<li class="dr-list-item" data-months="3">Last 3 months <span class="dr-item-aside"></span></li>' +
-          '<li class="dr-list-item" data-months="6">Last 6 months <span class="dr-item-aside"></span></li>' +
-          '<li class="dr-list-item" data-months="12">Last year <span class="dr-item-aside"></span></li>' +
-          '<li class="dr-list-item" data-months="all">All time <span class="dr-item-aside"></span></li>' +
-        '</ul>' +
-      '</div>');
+          '<div class="dr-presets">' +
+          '<span class="dr-preset-bar"></span>' +
+          '<span class="dr-preset-bar"></span>' +
+          '<span class="dr-preset-bar"></span>' +
+          '</div>' +
+          '</div>' +
 
-    return this.element.append('<div class="dr-input">' +
-      '<div class="dr-dates">' +
-        '<div class="dr-date" contenteditable>'+ moment(this.current_date).format('MMMM D, YYYY') +'</div>' +
-      '</div>' +
-    '</div>' +
-
-    '<div class="dr-selections">' +
-      '<div class="dr-calendar" style="display: none;">' +
-        '<div class="dr-range-switcher">' +
+          '<div class="dr-selections">' +
+          '<div class="dr-calendar" style="display: none;">' +
+          '<div class="dr-range-switcher">' +
           '<div class="dr-switcher dr-month-switcher">' +
-            '<i class="dr-left"></i>' +
-            '<span></span>' +
-            '<i class="dr-right"></i>' +
+          '<i class="dr-left"></i>' +
+          '<span>April</span>' +
+          '<i class="dr-right"></i>' +
           '</div>' +
           '<div class="dr-switcher dr-year-switcher">' +
-            '<i class="dr-left"></i>' +
-            '<span></span>' +
-            '<i class="dr-right"></i>' +
+          '<i class="dr-left"></i>' +
+          '<span>2015</span>' +
+          '<i class="dr-right"></i>' +
           '</div>' +
-        '</div>' +
-        '<ul class="dr-days-of-week-list">' +
+          '</div>' +
+          '<ul class="dr-days-of-week-list">' +
           '<li class="dr-day-of-week">S</li>' +
           '<li class="dr-day-of-week">M</li>' +
           '<li class="dr-day-of-week">T</li>' +
@@ -691,10 +649,52 @@
           '<li class="dr-day-of-week">T</li>' +
           '<li class="dr-day-of-week">F</li>' +
           '<li class="dr-day-of-week">S</li>' +
+          '</ul>' +
+          '<ul class="dr-day-list"></ul>' +
+          '</div>' +
+
+          '<ul class="dr-preset-list" style="display: none;">' +
+          '<li class="dr-list-item" data-months="days">Last 30 days <span class="dr-item-aside"></span></li>' +
+          '<li class="dr-list-item" data-months="1">Last month <span class="dr-item-aside"></span></li>' +
+          '<li class="dr-list-item" data-months="3">Last 3 months <span class="dr-item-aside"></span></li>' +
+          '<li class="dr-list-item" data-months="6">Last 6 months <span class="dr-item-aside"></span></li>' +
+          '<li class="dr-list-item" data-months="12">Last year <span class="dr-item-aside"></span></li>' +
+          '<li class="dr-list-item" data-months="all">All time <span class="dr-item-aside"></span></li>' +
+          '</ul>' +
+          '</div>');
+
+    return this.element.append('<div class="dr-input">' +
+        '<div class="dr-dates">' +
+        '<div class="dr-date" contenteditable>'+ moment(this.current_date).format('MMMM D, YYYY') +'</div>' +
+        '</div>' +
+        '</div>' +
+
+        '<div class="dr-selections">' +
+        '<div class="dr-calendar" style="display: none;">' +
+        '<div class="dr-range-switcher">' +
+        '<div class="dr-switcher dr-month-switcher">' +
+        '<i class="dr-left"></i>' +
+        '<span></span>' +
+        '<i class="dr-right"></i>' +
+        '</div>' +
+        '<div class="dr-switcher dr-year-switcher">' +
+        '<i class="dr-left"></i>' +
+        '<span></span>' +
+        '<i class="dr-right"></i>' +
+        '</div>' +
+        '</div>' +
+        '<ul class="dr-days-of-week-list">' +
+        '<li class="dr-day-of-week">S</li>' +
+        '<li class="dr-day-of-week">M</li>' +
+        '<li class="dr-day-of-week">T</li>' +
+        '<li class="dr-day-of-week">W</li>' +
+        '<li class="dr-day-of-week">T</li>' +
+        '<li class="dr-day-of-week">F</li>' +
+        '<li class="dr-day-of-week">S</li>' +
         '</ul>' +
         '<ul class="dr-day-list"></ul>' +
-      '</div>' +
-    '</div>');
+        '</div>' +
+        '</div>');
   }
 
   // Returns a contiguous array of integers with the specified length
@@ -713,12 +713,7 @@
   this.language = "DE";
 
   this.monthNames = {
-  { DE: [
-    "Januar", "Februar", "März",
-    "April", "Mai", "Juni",
-    "Juli", "August", "September",
-    "Oktober", "November", "Dezember"
-      ]
+    DE: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September","Oktober", "November", "Dezember"]
   };
 
   //the original calendar parse date strings with new date, not working with DE dates
