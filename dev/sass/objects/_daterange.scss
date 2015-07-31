@@ -18,6 +18,7 @@
     background-color: $white;
     position: relative;
     z-index: 5;
+    border-radius: 4px; //ml-ver-001
     overflow: hidden;
 
     &:hover {
@@ -25,7 +26,6 @@
     }
     &.active {
       box-shadow: 0 0 0 3px rgba($bluemoon, 0.3);//ml-ver-001 0.3
-      border-radius: 5px;
       border-color: $blue;
     }
     .dr-dates {
