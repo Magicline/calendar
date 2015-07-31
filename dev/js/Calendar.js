@@ -18,8 +18,8 @@
     this.element =      settings.element || $('.daterange');
     this.type =         this.element.hasClass('daterange--single') ? 'single' : 'double';
     this.selected =     null;
-    this.earliest_date =     settings.earliest_date || new Date('January 1, 1900');
-    this.latest_date =       settings.latest_date || new Date('December 31, 2900');
+    this.earliest_date =     settings.earliest_date || parseLongDateStringsWithMoment('January 1, 1900');//ml-ver-001 change: parseLongDateStringsWithMoment
+    this.latest_date =       settings.latest_date || parseLongDateStringsWithMoment('December 31, 2900');//ml-ver-001 change: parseLongDateStringsWithMoment
     this.end_date =     settings.end_date || (this.type == 'double' ? new Date() : null);
     this.start_date =   settings.start_date || (this.type == 'double' ? new Date(moment(this.end_date).subtract(1, 'month')) : null);
     this.current_date = settings.current_date || (this.type == 'single' ? new Date() : null);
@@ -34,8 +34,8 @@
     $('.dr-list-item', this.element).click(function() {
       var range = $('.dr-item-aside', this).html().split('–');
 
-      self.start_date = new Date(range[0]);
-      self.end_date = new Date(range[1]);
+      self.start_date = parseShortDateStringsWithMoment(range[0]);//ml-ver-001 change: parseShortDateStringsWithMoment
+      self.end_date = parseShortDateStringsWithMoment(range[1]);//ml-ver-001 change: parseShortDateStringsWithMoment
       self.calendarSetDates();
       self.presetToggle();
       self.calendarSaveDates();
@@ -113,8 +113,9 @@
     $('.dr-month-switcher i', this.element).click(function() {
       var m = $('.dr-month-switcher span', self.element).html();
       var y = $('.dr-year-switcher span', self.element).html();
-      var back = moment(new Date(m +' 1, '+ y)).subtract(1, 'month');
-      var forward = moment(new Date(m +' 1, '+ y)).add(1, 'month').startOf('day');
+
+      var back = moment(parseLongDateStringsWithMoment(m +' 1, '+ y)).subtract(1, 'month');//ml-ver-001 change: parseLongDateStringsWithMoment
+      var forward = moment(parseLongDateStringsWithMoment(m +' 1, '+ y)).add(1, 'month').startOf('day');//ml-ver-001 change: parseLongDateStringsWithMoment
 
       if ($(this).hasClass('dr-left')) {
         $(this).parent().find('span').html(back.format('MMMM'));
@@ -128,8 +129,8 @@
     $('.dr-year-switcher i', this.element).click(function() {
       var m = $('.dr-month-switcher span', self.element).html();
       var y = $('.dr-year-switcher span', self.element).html();
-      var back = moment(new Date(m +' 1, '+ y)).subtract(1, 'year');
-      var forward = moment(new Date(m +' 1, '+ y)).add(1, 'year').startOf('day');
+      var back = moment(parseLongDateStringsWithMoment(m +' 1, '+ y)).subtract(1, 'year'); //ml-ver-001 change: parseLongDateStringsWithMoment
+      var forward = moment(parseLongDateStringsWithMoment(m +' 1, '+ y)).add(1, 'year').startOf('day'); //ml-ver-001 change: parseLongDateStringsWithMoment
 
       if ($(this).hasClass('dr-left')) {
         $(this).parent().find('span').html(back.format('YYYY'));
@@ -192,8 +193,8 @@
     var self = this;
     var date = this.latest_date;
 
-    var s = new Date($('.dr-date-start', self.element).html());
-    var e = new Date($('.dr-date-end', self.element).html());
+    var s = parseLongDateStringsWithMoment($('.dr-date-start', self.element).html());//ml-ver-001 change: parseLongDateStringsWithMoment
+    var e = parseLongDateStringsWithMoment($('.dr-date-end', self.element).html());
     this.start_date = s == 'Invalid Date' ? this.start_date : s;
     this.end_date = e == 'Invalid Date' ? this.end_date : e;
 
@@ -286,9 +287,9 @@
       c = c_array.join(' ');
     }
 
-    s = new Date(s);
-    e = new Date(e);
-    c = new Date(c);
+    s = parseLongDateStringsWithMoment(s);//ml-ver-001 change: parseLongDateStringsWithMoment
+    e = parseLongDateStringsWithMoment(e);//ml-ver-001 change: parseLongDateStringsWithMoment
+    c = parseLongDateStringsWithMoment(c);//ml-ver-001 change: parseLongDateStringsWithMoment
 
     if (moment(s).isAfter(e) ||
         moment(e).isBefore(s) ||
@@ -642,24 +643,13 @@
           '</div>' +
           '</div>' +
           '<ul class="dr-days-of-week-list">' +
-          '<li class="dr-day-of-week">S</li>' +
-          '<li class="dr-day-of-week">M</li>' +
-          '<li class="dr-day-of-week">T</li>' +
-          '<li class="dr-day-of-week">W</li>' +
-          '<li class="dr-day-of-week">T</li>' +
-          '<li class="dr-day-of-week">F</li>' +
-          '<li class="dr-day-of-week">S</li>' +
+          weekDays() + //ml-ver-001 change: weekDays
           '</ul>' +
           '<ul class="dr-day-list"></ul>' +
           '</div>' +
 
           '<ul class="dr-preset-list" style="display: none;">' +
-          '<li class="dr-list-item" data-months="days">Last 30 days <span class="dr-item-aside"></span></li>' +
-          '<li class="dr-list-item" data-months="1">Last month <span class="dr-item-aside"></span></li>' +
-          '<li class="dr-list-item" data-months="3">Last 3 months <span class="dr-item-aside"></span></li>' +
-          '<li class="dr-list-item" data-months="6">Last 6 months <span class="dr-item-aside"></span></li>' +
-          '<li class="dr-list-item" data-months="12">Last year <span class="dr-item-aside"></span></li>' +
-          '<li class="dr-list-item" data-months="all">All time <span class="dr-item-aside"></span></li>' +
+          ranges() + //ml-ver-001 change: ranges
           '</ul>' +
           '</div>');
 
@@ -684,13 +674,7 @@
         '</div>' +
         '</div>' +
         '<ul class="dr-days-of-week-list">' +
-        '<li class="dr-day-of-week">S</li>' +
-        '<li class="dr-day-of-week">M</li>' +
-        '<li class="dr-day-of-week">T</li>' +
-        '<li class="dr-day-of-week">W</li>' +
-        '<li class="dr-day-of-week">T</li>' +
-        '<li class="dr-day-of-week">F</li>' +
-        '<li class="dr-day-of-week">S</li>' +
+        weekDays() + //ml-ver-001 change: weekDays
         '</ul>' +
         '<ul class="dr-day-list"></ul>' +
         '</div>' +
@@ -709,21 +693,36 @@
   }
 
   //--- Magicline changes ---
-
-  this.language = "DE";
-
-  this.monthNames = {
-    DE: ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September","Oktober", "November", "Dezember"]
-  };
-
   //the original calendar parse date strings with new date, not working with DE dates
-  function parseLongDateStringsWithMoment() {
-
+  //format is Dezember 1., 2015
+  function parseLongDateStringsWithMoment(dateString) {
+    return moment(dateString, 'MMMM D, YYYY').toDate();
   }
 
-  function getMonthNumber() {
+  //format 1. Dez. 2015
+  function parseShortDateStringsWithMoment(dateString) {
+    return moment(dateString, 'D MMM YYYY').toDate();
+  }
 
+  function weekDays() {
+    return '<li class="dr-day-of-week">So</li>' +
+        '<li class="dr-day-of-week">Mo</li>' +
+        '<li class="dr-day-of-week">Di</li>' +
+        '<li class="dr-day-of-week">Mi</li>' +
+        '<li class="dr-day-of-week">Do</li>' +
+        '<li class="dr-day-of-week">Fr</li>' +
+        '<li class="dr-day-of-week">Sa</li>';
+  }
+
+  function ranges() {
+    return '<li class="dr-list-item" data-months="days">Letzten 30 Tage <span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="1">Letzter Monat  <span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="3">Letzten 3 Monate <span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="6">Letzten 6 Monate <span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="12">Letztes Jahr <span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="all">Gesamter Zeitraum <span class="dr-item-aside"></span></li>';
   }
 
   return Calendar;
 }));
+
