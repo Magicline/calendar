@@ -708,5 +708,27 @@
     return range;
   }
 
+  //--- Magicline changes ---
+
+  this.language = "DE";
+
+  this.monthNames = {
+  { DE: [
+    "Januar", "Februar", "März",
+    "April", "Mai", "Juni",
+    "Juli", "August", "September",
+    "Oktober", "November", "Dezember"
+      ]
+  };
+
+  //the original calendar parse date strings with new date, not working with DE dates
+  function parseLongDateStringsWithMoment() {
+
+  }
+
+  function getMonthNumber() {
+
+  }
+
   return Calendar;
 }));
