@@ -1,7 +1,7 @@
 .daterange {
-  font-family: $font-family;
+  font-family: inherit; //ml-ver-001
   float: left;
-  padding: 20px;
+  //padding: 20px; //ml-ver-001
 }
 .daterange--double {
   z-index: 2;

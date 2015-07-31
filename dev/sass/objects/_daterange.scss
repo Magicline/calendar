@@ -15,7 +15,6 @@
   .dr-input {
     display: flex;
     border: 1px solid $mouse;
-    border-radius: $radius;
     background-color: $white;
     position: relative;
     z-index: 5;
@@ -25,7 +24,7 @@
       border-color: $blue;
     }
     &.active {
-      box-shadow: 0 0 0 3px rgba($bluemoon, 0.8);
+      box-shadow: 0 0 0 3px rgba($bluemoon, 0.3);//ml-ver-001 0.3
       border-color: $blue;
     }
     .dr-dates {
@@ -36,7 +35,7 @@
       min-width: 230px;
 
       .dr-date {
-        font-size: rem(15);
+        //font-size: rem(15);//ml-ver-001
         padding: rem(10.5 0);
         text-align: center;
         white-space: nowrap;
@@ -58,7 +57,7 @@
       }
     }
     .dr-presets {
-      width: rem(35);
+      width: 32px;//ml-ver-001
       border-left: 1px solid $mouse;
       flex-shrink: 0;
       cursor: pointer;
@@ -100,13 +99,13 @@
 
     .dr-calendar {
       background-color: $white;
-      font-size: rem(15);
+      //font-size: rem(15);//ml-ver-001
       box-shadow: 0 0 5px $mouse;
       border-radius: 0 0 $radius $radius;
       position: relative;
       overflow: hidden;
       z-index: 4;
-      padding-top: 5px;
+      amrgin-top: 10px; //ml-ver-001
       top: -5px;
       left: 4px;
       transition: width .2s;
@@ -116,7 +115,7 @@
         display: flex;
         justify-content: space-between;
         padding: rem(6 8);
-        font-size: rem(14);
+        //font-size: rem(14);//ml-ver-001
 
         .dr-switcher {
           display: flex;
@@ -124,14 +123,14 @@
           align-items: center;
           border: 1px solid rgba($mouse, 0.5);
           border-radius: $radius;
-          height: rem(25);
+          height: 25px; //ml-ver-001
 
           i {
             color: $mouse;
             position: relative;
             top: -1px;
             cursor: pointer;
-            font-size: rem(12);
+            //font-size: rem(12);//ml-ver-001
             height: 100%;
             width: 20px;
 
@@ -180,7 +179,7 @@
       .dr-days-of-week-list {
         display: flex;
         background-color: $moon;
-        font-size: rem(10);
+        //font-size: rem(10);//ml-ver-001
         color: $rat;
         padding: rem(5 0);
         border: 1px solid rgba($mouse, 0.5);
@@ -195,7 +194,7 @@
       .dr-day-list {
         display: flex;
         flex-wrap: wrap;
-        font-size: rem(15);
+        //font-size: rem(15);//ml-ver-001
 
         .dr-day {
           padding: rem(5);
@@ -251,13 +250,13 @@
     .dr-preset-list {
       background-color: $white;
       color: $blue;
-      font-size: rem(15);
+      //font-size: rem(15);//ml-ver-001
       box-shadow: 0 0 5px $mouse;
       border-radius: 0 0 $radius $radius;
       position: relative;
       overflow: hidden;
       z-index: 4;
-      padding-top: 5px;
+      margin-top: 10px;//ml-ver-001
       top: -5px;
       left: 4px;
       width: 100%;
@@ -275,7 +274,7 @@
       }
       .dr-item-aside {
         color: $rat;
-        font-size: rem(12);
+        //font-size: rem(12);//ml-ver-001
         margin-left: rem(5);
       }
     }
@@ -298,5 +297,5 @@
         text-align: left;
       }
     }
-  } 
+  }
 }
