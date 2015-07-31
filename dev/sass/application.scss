@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
-@import "components/*";
-@import "objects/*";
-@import "pages/*";
+@import "components/_colors";
+@import "components/_functions";
+@import "components/_variables";
+@import "objects/_daterange";
+@import "pages/_home";
