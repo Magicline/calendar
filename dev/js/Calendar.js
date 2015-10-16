@@ -17,6 +17,7 @@
     this.presetIsOpen = false;
     this.element =      settings.element || $('.daterange');
     this.type =         this.element.hasClass('daterange--single') ? 'single' : 'double';
+    this.sameDayRange =   settings.same_day_range || false;
     this.selected =     null;
     this.earliest_date =     settings.earliest_date || parseLongDateStringsWithMoment('January 1, 1900');//ml-ver-001 change: parseLongDateStringsWithMoment
     this.latest_date =       settings.latest_date || parseLongDateStringsWithMoment('December 31, 2900');//ml-ver-001 change: parseLongDateStringsWithMoment
@@ -32,7 +33,7 @@
     });
 
     $('.dr-list-item', this.element).click(function() {
-      var range = $('.dr-item-aside', this).html().split('â€“');
+      var range = $('.dr-item-aside', this).html().split('–');
 
       self.start_date = parseShortDateStringsWithMoment(range[0]);//ml-ver-001 change: parseShortDateStringsWithMoment
       self.end_date = parseShortDateStringsWithMoment(range[1]);//ml-ver-001 change: parseShortDateStringsWithMoment
@@ -224,7 +225,7 @@
       // first_day = moment(self.earliest_date);
         return $(this).remove()
 
-      $('.dr-item-aside', this).html(first_day.format('ll') +' â€“ '+ last_day.format('ll'));
+      $('.dr-item-aside', this).html(first_day.format('ll') +' – '+ last_day.format('ll'));
     });
   }
 
@@ -293,7 +294,7 @@
 
     if (moment(s).isAfter(e) ||
         moment(e).isBefore(s) ||
-        moment(s).isSame(e) ||
+        (moment(s).isSame(e) && !this.sameDayRange) ||
         moment(s).isBefore(this.earliest_date) ||
         moment(e).isAfter(this.latest_date)) {
       return this.calendarSetDates();
@@ -386,11 +387,11 @@
               next = curr;
 
             if (type == 'start')
-              if (moment(next).isSame(self.end_date))
+              if (moment(next).isSame(self.end_date) || (self.sameDayRange && moment(curr).isSame(self.end_date)))
                 return false;
 
             if (type == 'end')
-              if (moment(prev).isSame(self.start_date))
+              if (moment(prev).isSame(self.start_date) || (self.sameDayRange && moment(curr).isSame(self.start_date)))
                 return false;
 
 
@@ -491,6 +492,7 @@
     $('.dr-input, .dr-date', this.element).removeClass('active');
 
     this.calIsOpen = false;
+    self.calendarSaveDates();
   }
 
 
@@ -617,7 +619,7 @@
       return this.element.append('<div class="dr-input">' +
           '<div class="dr-dates">' +
           '<div class="dr-date dr-date-start" contenteditable>'+ moment(this.start_date).format('MMMM D, YYYY') +'</div>' +
-          '<span class="dr-dates-dash">â€“</span>' +
+          '<span class="dr-dates-dash">–</span>' +
           '<div class="dr-date dr-date-end" contenteditable>'+ moment(this.end_date).format('MMMM D, YYYY') +'</div>' +
           '</div>' +
 
