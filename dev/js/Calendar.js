@@ -33,7 +33,7 @@
     });
 
     $('.dr-list-item', this.element).click(function() {
-      var range = $('.dr-item-aside', this).html().split('–');
+      var range = $('.dr-item-aside', this).html().split('â€“');
 
       self.start_date = parseShortDateStringsWithMoment(range[0]);//ml-ver-001 change: parseShortDateStringsWithMoment
       self.end_date = parseShortDateStringsWithMoment(range[1]);//ml-ver-001 change: parseShortDateStringsWithMoment
@@ -225,7 +225,7 @@
       // first_day = moment(self.earliest_date);
         return $(this).remove()
 
-      $('.dr-item-aside', this).html(first_day.format('ll') +' – '+ last_day.format('ll'));
+      $('.dr-item-aside', this).html(first_day.format('ll') +' â€“ '+ last_day.format('ll'));
     });
   }
 
@@ -619,7 +619,7 @@
       return this.element.append('<div class="dr-input">' +
           '<div class="dr-dates">' +
           '<div class="dr-date dr-date-start" contenteditable>'+ moment(this.start_date).format('MMMM D, YYYY') +'</div>' +
-          '<span class="dr-dates-dash">–</span>' +
+          '<span class="dr-dates-dash">â€“</span>' +
           '<div class="dr-date dr-date-end" contenteditable>'+ moment(this.end_date).format('MMMM D, YYYY') +'</div>' +
           '</div>' +
 
