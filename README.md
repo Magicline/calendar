@@ -1,6 +1,11 @@
 # [Baremetrics](https://baremetrics.com/) Date Range Picker
 _[Baremetrics](https://baremetrics.com) provides one-click analytics & insights for Stripe. **[Get started today!](https://baremetrics.com)**_
 
+## Magicline Version 1.1
+- add sameDayRange
+
+---
+
 ## Magicline Version 1
 - Also parse German Date-Strings
 - Different Style (no font-size calculation / no paddings )
