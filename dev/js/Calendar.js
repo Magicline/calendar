@@ -707,22 +707,22 @@
   }
 
   function weekDays() {
-    return '<li class="dr-day-of-week">So</li>' +
-        '<li class="dr-day-of-week">Mo</li>' +
-        '<li class="dr-day-of-week">Di</li>' +
-        '<li class="dr-day-of-week">Mi</li>' +
-        '<li class="dr-day-of-week">Do</li>' +
-        '<li class="dr-day-of-week">Fr</li>' +
-        '<li class="dr-day-of-week">Sa</li>';
+    return '<li class="dr-day-of-week">' + l('commons.dayofweek.sunday.short') + '</li>' +
+        '<li class="dr-day-of-week">' + l('commons.dayofweek.monday.short')  + '</li>' +
+        '<li class="dr-day-of-week">' + l('commons.dayofweek.tuesday.short') + '</li>' +
+        '<li class="dr-day-of-week">' + l('commons.dayofweek.wednesday.short') + '</li>' +
+        '<li class="dr-day-of-week">' + l('commons.dayofweek.thursday.short') + '</li>' +
+        '<li class="dr-day-of-week">' + l('commons.dayofweek.friday.short') + '</li>' +
+        '<li class="dr-day-of-week">' + l('commons.dayofweek.saturday.short') + '</li>';
   }
 
   function ranges() {
-    return '<li class="dr-list-item" data-months="days">Letzten 30 Tage <span class="dr-item-aside"></span></li>' +
-        '<li class="dr-list-item" data-months="1">Letzter Monat  <span class="dr-item-aside"></span></li>' +
-        '<li class="dr-list-item" data-months="3">Letzten 3 Monate <span class="dr-item-aside"></span></li>' +
-        '<li class="dr-list-item" data-months="6">Letzten 6 Monate <span class="dr-item-aside"></span></li>' +
-        '<li class="dr-list-item" data-months="12">Letztes Jahr <span class="dr-item-aside"></span></li>' +
-        '<li class="dr-list-item" data-months="all">Gesamter Zeitraum <span class="dr-item-aside"></span></li>';
+    return '<li class="dr-list-item" data-months="days">' + l('datetime.last.30.days') + '&nbsp;<span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="1">' + l('datetime.last.month') + '&nbsp;<span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="3">' + l('datetime.last.3.month') + '&nbsp;<span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="6">' + l('datetime.last.6.month') + '&nbsp;<span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="12">' + l('datetime.last.year') + '&nbsp;<span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="all">' + l('datetime.complete.timespan') + '&nbsp;<span class="dr-item-aside"></span></li>';
   }
 
   return Calendar;
