@@ -1,7 +1,7 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['jquery', 'moment'], factory);
+    define(['jquery', 'moment', 'i18n_manager'], factory); //ml-ver-004 support i18n
   } else if (typeof exports === 'object') {
     // Node/CommonJS
     module.exports = factory(require('jquery'), require('moment'));
@@ -9,7 +9,7 @@
     // Browser globals
     root.Calendar = factory(jQuery, moment);
   }
-}(this, function ($, moment) {
+}(this, function ($, moment, i18n) {
   function Calendar(settings) {
     var self = this;
 
@@ -617,70 +617,70 @@
   Calendar.prototype.calendarHTML = function(type) {
     if (type == "double")
       return this.element.append('<div class="dr-input">' +
-          '<div class="dr-dates">' +
-          '<div class="dr-date dr-date-start" contenteditable>'+ moment(this.start_date).format('MMMM D, YYYY') +'</div>' +
-          '<span class="dr-dates-dash">–</span>' +
-          '<div class="dr-date dr-date-end" contenteditable>'+ moment(this.end_date).format('MMMM D, YYYY') +'</div>' +
-          '</div>' +
+                                 '<div class="dr-dates">' +
+                                 '<div class="dr-date dr-date-start" contenteditable>'+ moment(this.start_date).format('MMMM D, YYYY') +'</div>' +
+                                 '<span class="dr-dates-dash">–</span>' +
+                                 '<div class="dr-date dr-date-end" contenteditable>'+ moment(this.end_date).format('MMMM D, YYYY') +'</div>' +
+                                 '</div>' +
 
-          '<div class="dr-presets">' +
-          '<span class="dr-preset-bar"></span>' +
-          '<span class="dr-preset-bar"></span>' +
-          '<span class="dr-preset-bar"></span>' +
-          '</div>' +
-          '</div>' +
+                                 '<div class="dr-presets">' +
+                                 '<span class="dr-preset-bar"></span>' +
+                                 '<span class="dr-preset-bar"></span>' +
+                                 '<span class="dr-preset-bar"></span>' +
+                                 '</div>' +
+                                 '</div>' +
 
-          '<div class="dr-selections">' +
-          '<div class="dr-calendar" style="display: none;">' +
-          '<div class="dr-range-switcher">' +
-          '<div class="dr-switcher dr-month-switcher">' +
-          '<i class="dr-left"></i>' +
-          '<span>April</span>' +
-          '<i class="dr-right"></i>' +
-          '</div>' +
-          '<div class="dr-switcher dr-year-switcher">' +
-          '<i class="dr-left"></i>' +
-          '<span>2015</span>' +
-          '<i class="dr-right"></i>' +
-          '</div>' +
-          '</div>' +
-          '<ul class="dr-days-of-week-list">' +
-          weekDays() + //ml-ver-001 change: weekDays
-          '</ul>' +
-          '<ul class="dr-day-list"></ul>' +
-          '</div>' +
+                                 '<div class="dr-selections">' +
+                                 '<div class="dr-calendar" style="display: none;">' +
+                                 '<div class="dr-range-switcher">' +
+                                 '<div class="dr-switcher dr-month-switcher">' +
+                                 '<i class="dr-left"></i>' +
+                                 '<span>April</span>' +
+                                 '<i class="dr-right"></i>' +
+                                 '</div>' +
+                                 '<div class="dr-switcher dr-year-switcher">' +
+                                 '<i class="dr-left"></i>' +
+                                 '<span>2015</span>' +
+                                 '<i class="dr-right"></i>' +
+                                 '</div>' +
+                                 '</div>' +
+                                 '<ul class="dr-days-of-week-list">' +
+                                 weekDays() + //ml-ver-001 change: weekDays
+                                 '</ul>' +
+                                 '<ul class="dr-day-list"></ul>' +
+                                 '</div>' +
 
-          '<ul class="dr-preset-list" style="display: none;">' +
-          ranges() + //ml-ver-001 change: ranges
-          '</ul>' +
-          '</div>');
+                                 '<ul class="dr-preset-list" style="display: none;">' +
+                                 ranges() + //ml-ver-001 change: ranges
+                                 '</ul>' +
+                                 '</div>');
 
     return this.element.append('<div class="dr-input">' +
-        '<div class="dr-dates">' +
-        '<div class="dr-date" contenteditable>'+ moment(this.current_date).format('MMMM D, YYYY') +'</div>' +
-        '</div>' +
-        '</div>' +
+                               '<div class="dr-dates">' +
+                               '<div class="dr-date" contenteditable>'+ moment(this.current_date).format('MMMM D, YYYY') +'</div>' +
+                               '</div>' +
+                               '</div>' +
 
-        '<div class="dr-selections">' +
-        '<div class="dr-calendar" style="display: none;">' +
-        '<div class="dr-range-switcher">' +
-        '<div class="dr-switcher dr-month-switcher">' +
-        '<i class="dr-left"></i>' +
-        '<span></span>' +
-        '<i class="dr-right"></i>' +
-        '</div>' +
-        '<div class="dr-switcher dr-year-switcher">' +
-        '<i class="dr-left"></i>' +
-        '<span></span>' +
-        '<i class="dr-right"></i>' +
-        '</div>' +
-        '</div>' +
-        '<ul class="dr-days-of-week-list">' +
-        weekDays() + //ml-ver-001 change: weekDays
-        '</ul>' +
-        '<ul class="dr-day-list"></ul>' +
-        '</div>' +
-        '</div>');
+                               '<div class="dr-selections">' +
+                               '<div class="dr-calendar" style="display: none;">' +
+                               '<div class="dr-range-switcher">' +
+                               '<div class="dr-switcher dr-month-switcher">' +
+                               '<i class="dr-left"></i>' +
+                               '<span></span>' +
+                               '<i class="dr-right"></i>' +
+                               '</div>' +
+                               '<div class="dr-switcher dr-year-switcher">' +
+                               '<i class="dr-left"></i>' +
+                               '<span></span>' +
+                               '<i class="dr-right"></i>' +
+                               '</div>' +
+                               '</div>' +
+                               '<ul class="dr-days-of-week-list">' +
+                               weekDays() + //ml-ver-001 change: weekDays
+                               '</ul>' +
+                               '<ul class="dr-day-list"></ul>' +
+                               '</div>' +
+                               '</div>');
   }
 
   // Returns a contiguous array of integers with the specified length
@@ -707,24 +707,23 @@
   }
 
   function weekDays() {
-    return '<li class="dr-day-of-week">' + l('commons.dayofweek.sunday.short') + '</li>' +
-        '<li class="dr-day-of-week">' + l('commons.dayofweek.monday.short')  + '</li>' +
-        '<li class="dr-day-of-week">' + l('commons.dayofweek.tuesday.short') + '</li>' +
-        '<li class="dr-day-of-week">' + l('commons.dayofweek.wednesday.short') + '</li>' +
-        '<li class="dr-day-of-week">' + l('commons.dayofweek.thursday.short') + '</li>' +
-        '<li class="dr-day-of-week">' + l('commons.dayofweek.friday.short') + '</li>' +
-        '<li class="dr-day-of-week">' + l('commons.dayofweek.saturday.short') + '</li>';
+    return '<li class="dr-day-of-week">' + i18n.l('commons.dayofweek.sunday.short') + '</li>' +
+        '<li class="dr-day-of-week">' + i18n.l('commons.dayofweek.monday.short')  + '</li>' +
+        '<li class="dr-day-of-week">' + i18n.l('commons.dayofweek.tuesday.short') + '</li>' +
+        '<li class="dr-day-of-week">' + i18n.l('commons.dayofweek.wednesday.short') + '</li>' +
+        '<li class="dr-day-of-week">' + i18n.l('commons.dayofweek.thursday.short') + '</li>' +
+        '<li class="dr-day-of-week">' + i18n.l('commons.dayofweek.friday.short') + '</li>' +
+        '<li class="dr-day-of-week">' + i18n.l('commons.dayofweek.saturday.short') + '</li>';
   }
 
   function ranges() {
-    return '<li class="dr-list-item" data-months="days">' + l('datetime.last.30.days') + '&nbsp;<span class="dr-item-aside"></span></li>' +
-        '<li class="dr-list-item" data-months="1">' + l('datetime.last.month') + '&nbsp;<span class="dr-item-aside"></span></li>' +
-        '<li class="dr-list-item" data-months="3">' + l('datetime.last.3.month') + '&nbsp;<span class="dr-item-aside"></span></li>' +
-        '<li class="dr-list-item" data-months="6">' + l('datetime.last.6.month') + '&nbsp;<span class="dr-item-aside"></span></li>' +
-        '<li class="dr-list-item" data-months="12">' + l('datetime.last.year') + '&nbsp;<span class="dr-item-aside"></span></li>' +
-        '<li class="dr-list-item" data-months="all">' + l('datetime.complete.timespan') + '&nbsp;<span class="dr-item-aside"></span></li>';
+    return '<li class="dr-list-item" data-months="days">' + i18n.l('datetime.last.30.days') + '&nbsp;<span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="1">' + i18n.l('datetime.last.month') + '&nbsp;<span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="3">' + i18n.l('datetime.last.3.month') + '&nbsp;<span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="6">' + i18n.l('datetime.last.6.month') + '&nbsp;<span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="12">' + i18n.l('datetime.last.year') + '&nbsp;<span class="dr-item-aside"></span></li>' +
+        '<li class="dr-list-item" data-months="all">' + i18n.l('datetime.complete.timespan') + '&nbsp;<span class="dr-item-aside"></span></li>';
   }
 
   return Calendar;
 }));
-
