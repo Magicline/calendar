@@ -3,13 +3,13 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     // AMD. Register as an anonymous module.
-    define(['jquery', 'moment', 'i18n_manager'], factory);
+    define(['jquery', 'moment'], factory);
   } else if (typeof exports === 'object') {
     // Node/CommonJS
-    module.exports = factory(require('jquery'), require('moment'), require('i18n_manager'));
+    module.exports = factory(require('jquery'), require('moment'));
   } else {
     // Browser globals
-    root.Calendar = factory(jQuery, moment, l);
+    root.Calendar = factory(jQuery, moment);
   }
 } (this, function ($, moment, i18n) {
   function Calendar(settings) {
@@ -229,7 +229,7 @@
 
   Calendar.prototype.presetCreate = function() {
     var self = this;
-    var __ = i18n.l;
+
     var ul_presets = $('<ul class="dr-preset-list" style="display: none;"></ul>');
     var presets = typeof self.settings.presets === 'object' ? self.settings.presets :
         [{
