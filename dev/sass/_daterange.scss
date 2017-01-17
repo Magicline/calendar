@@ -40,8 +40,7 @@
       min-width: calc(100% - 35px);
 
       .dr-date {
-        font-size: rem(15);
-        padding: rem(10.5 0);
+        font-size: inherit;
         text-align: center;
         white-space: nowrap;
         overflow: hidden;
