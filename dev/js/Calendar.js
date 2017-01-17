@@ -682,10 +682,7 @@
           '<div class="dr-date dr-date-end" contenteditable>'+ moment(this.end_date).format(this.format.input) +'</div>' +
           '</div>' +
 
-          (this.presets ? '<div class="dr-presets">' +
-          '<span class="dr-preset-bar"></span>' +
-          '<span class="dr-preset-bar"></span>' +
-          '<span class="dr-preset-bar"></span>' +
+          (this.presets ? '<div class="dr-presets fa fa-chevron-down">' +
           '</div>' : '') +
           '</div>' +
 
