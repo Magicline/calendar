@@ -258,16 +258,6 @@
           end: self.latest_date
         }];
 
-    if (moment(self.latest_date).diff(moment(self.latest_date).startOf('month'), 'days') >= 6 &&
-        typeof self.settings.presets !== 'object'
-    ) {
-      presets.splice(1, 0, {
-        label: i18n.l('datetime.this.month'),
-        start: moment(self.latest_date).startOf('month'),
-        end: self.latest_date
-      });
-    }
-
     $.each(presets, function(i, d) {
       if (moment(d.start).isBefore(self.earliest_date)) {
         d.start = self.earliest_date;
