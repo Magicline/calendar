@@ -763,7 +763,7 @@
     }
 
     return range;
-  }
+  };
 
 
   return Calendar;
