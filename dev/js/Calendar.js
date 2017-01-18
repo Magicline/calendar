@@ -281,8 +281,9 @@
         d.end = self.latest_date;
       }
 
-      var startISO = moment(d.start).toISOString();
-      var endISO = moment(d.end).toISOString();
+      var startISO = moment(d.start).format(self.format.input);
+      var endISO = moment(d.end).format(self.format.input);
+
       var string = moment(d.start).format(self.format.preset) +' &ndash; '+ moment(d.end).format(self.format.preset);
 
       if ($('.dr-preset-list', self.element).length) {
@@ -664,7 +665,7 @@
         end: end && d.isSame(end, 'day'),
         current: current && d.isSame(current, 'day'),
         selected: start && end && d.isBetween(start, end),
-        date: d.toISOString(),
+        date: d.format(this.format.input),
         outside: d.isBefore(self.earliest_date) || d.isAfter(self.latest_date),
         fade: !d.isSame(reference, 'month')
       } );
@@ -746,7 +747,7 @@
     if (moment.defaultZone != null && moment.hasOwnProperty('tz')) {
       return moment.tz(d, this.format.input, moment.defaultZone.name);
     } else {
-      return moment(d);
+      return moment(d, this.format.input);
     }
   };
 
