@@ -563,8 +563,7 @@
         $('.dr-selected', self.element).css('background-color', '');
       },
       mousedown: function() {
-        var date = $(this).data('date');
-        var string = moment(date).format(self.format.input);
+        var string = $(this).data('date');
 
         if (other) {
           $('.dr-date', self.element)
