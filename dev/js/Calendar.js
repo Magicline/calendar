@@ -11,7 +11,16 @@
     // Browser globals
     root.Calendar = factory(jQuery, moment);
   }
-} (this, function ($, moment, i18n) {
+} (this, function ($, moment) {
+
+  var moduleScope = {
+    i18n: {
+      l: function (key) {
+        return key;
+      }
+    }
+  };
+
   function Calendar(settings) {
     var self = this;
 
@@ -233,27 +242,27 @@
     var ul_presets = $('<ul class="dr-preset-list" style="display: none;"></ul>');
     var presets = typeof self.settings.presets === 'object' ? self.settings.presets :
         [{
-          label: i18n.l('datetime.last.30.days'),
+          label: moduleScope.i18n.l('datetime.last.30.days'),
           start: moment(self.latest_date).subtract(29, 'days'),
           end: self.latest_date
         },{
-          label: i18n.l('datetime.last.month'),
+          label: moduleScope.i18n.l('datetime.last.month'),
           start: moment(self.latest_date).subtract(1, 'month').startOf('month'),
           end: moment(self.latest_date).subtract(1, 'month').endOf('month')
         },{
-          label: i18n.l('datetime.last.3.month'),
+          label: moduleScope.i18n.l('datetime.last.3.month'),
           start: moment(self.latest_date).subtract(3, 'month').startOf('month'),
           end: moment(self.latest_date).subtract(1, 'month').endOf('month')
         },{
-          label: i18n.l('datetime.last.6.month'),
+          label: moduleScope.i18n.l('datetime.last.6.month'),
           start: moment(self.latest_date).subtract(6, 'month').startOf('month'),
           end: moment(self.latest_date).subtract(1, 'month').endOf('month')
         },{
-          label: i18n.l('datetime.last.year'),
+          label: moduleScope.i18n.l('datetime.last.year'),
           start: moment(self.latest_date).subtract(12, 'month').startOf('month'),
           end: moment(self.latest_date).subtract(1, 'month').endOf('month')
         },{
-          label: i18n.l('datetime.complete.timespan'),
+          label: moduleScope.i18n.l('datetime.complete.timespan'),
           start: self.earliest_date,
           end: self.latest_date
         }];
@@ -750,6 +759,10 @@
     }
 
     return range;
+  };
+
+  Calendar.registerTranslationManager = function (i18n) {
+    moduleScope.i18n = i18n;
   };
 
 
