@@ -37,7 +37,7 @@
     this.required =       settings.required == false ? false : true;
 
     this.format =             settings.format || {};
-    this.format.input =       settings.format && settings.format.input || 'MMMM D, YYYY';
+    this.format.input =       settings.format && settings.format.input || 'D. MMMM YYYY';
     this.format.preset =      settings.format && settings.format.preset || 'll';
     this.format.jump_month =  settings.format && settings.format.jump_month || 'MMMM';
     this.format.jump_year =   settings.format && settings.format.jump_year || 'YYYY';
