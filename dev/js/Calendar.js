@@ -543,6 +543,8 @@
                   return false;
                 }
               }
+
+              selected = selected.prev().addClass('dr-maybe');
             }
           });
         }
