@@ -516,35 +516,33 @@
               next = curr;
 
             if (type == 'start') {
-              if (moment(next).isSame(self.end_date) || (self.sameDayRange && moment(curr).isSame(self.end_date)))
+              if (moment(next, self.format.input).isSame(self.end_date) || (self.sameDayRange && moment(curr, self.format.input).isSame(self.end_date)))
                 return false;
 
-              if (moment(curr).isAfter(self.end_date)) {
-                other = other || moment(curr).add(6, 'day').startOf('day');
+              if (moment(curr, self.format.input).isAfter(self.end_date)) {
+                other = other || moment(curr, self.format.input).add(6, 'day').startOf('day');
 
-                if (i > 5 || (next ? moment(next).isAfter(self.latest_date) : false)) {
+                if (i > 5 || (next ? moment(next, self.format.input).isAfter(self.latest_date) : false)) {
                   $(selected).addClass('dr-end');
-                  other = moment(curr);
+                  other = moment(curr, self.format.input);
                   return false;
                 }
               }
 
               selected = selected.next().addClass('dr-maybe');
             } else if (type == 'end') {
-              if (moment(prev).isSame(self.start_date) || (self.sameDayRange && moment(curr).isSame(self.start_date)))
+              if (moment(prev, self.format.input).isSame(self.start_date) || (self.sameDayRange && moment(curr, self.format.input).isSame(self.start_date)))
                 return false;
 
               if (moment(curr).isBefore(self.start_date)) {
-                other = other || moment(curr).subtract(6, 'day');
+                other = other || moment(curr, self.format.input).subtract(6, 'day');
 
                 if (i > 5 || (prev ? moment(prev).isBefore(self.earliest_date) : false)) {
                   $(selected).addClass('dr-start');
-                  other = moment(curr);
+                  other = moment(curr, self.format.input);
                   return false;
                 }
               }
-
-              selected = selected.prev().addClass('dr-maybe');
             }
           });
         }
