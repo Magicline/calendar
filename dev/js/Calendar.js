@@ -1,5 +1,5 @@
 const $ = require('jquery');
-const moment = require('moment/src/moment').default;
+const moment = require('moment');
 
 var moduleScope = {
 	i18n: {
